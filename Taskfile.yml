@@ -56,4 +56,4 @@ tasks:
   docker:test:
     cmds:
       - docker-compose down -v
-      - docker-compose run testfixtures go test -v -tags 'postgresql sqlite mysql sqlserver'
+      - docker-compose run testfixtures go test -v -tags 'postgresql sqlite mysql sqlserver clickhouse'

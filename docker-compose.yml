@@ -7,6 +7,7 @@ services:
       - postgresql
       - mysql
       - sqlserver
+      - clickhouse
     environment:
       PGPASSWORD: postgres
       PG_CONN_STRING: host=postgresql user=postgres dbname=testfixtures_test port=5432 sslmode=disable
@@ -35,3 +36,6 @@ services:
     environment:
       ACCEPT_EULA: 'Y'
       SA_PASSWORD: SQL@1server
+
+  clickhouse:
+    image: yandex/clickhouse-server:20.3

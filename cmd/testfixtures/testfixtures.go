@@ -10,8 +10,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
 	"github.com/spf13/pflag"
-
-	"github.com/go-testfixtures/testfixtures/v3"
 )
 
 var version = "master"
@@ -34,7 +32,7 @@ func main() {
 	)
 
 	pflag.BoolVar(&versionFlag, "version", false, "show testfixtures version")
-	pflag.StringVarP(&dialect, "dialect", "d", "", "which database system you're using (postgres, timescaledb, mysql, mariadb, sqlite or sqlserver)")
+	pflag.StringVarP(&dialect, "dialect", "d", "", "which database system you're using (postgres, timescaledb, mysql, mariadb, sqlite, sqlserver or clickhouse)")
 	pflag.StringVarP(&connString, "conn", "c", "", "a database connection string")
 	pflag.StringVarP(&dir, "dir", "D", "", "a directory of YAML fixtures to load")
 	pflag.StringSliceVarP(&files, "files", "f", nil, "a list of YAML files to load")
@@ -126,6 +124,8 @@ func getDialect(dialect string) (string, error) {
 		return "sqlite3", nil
 	case "mssql", "sqlserver":
 		return "sqlserver", nil
+	case "clickhouse":
+		return "clickhouse", nil
 	default:
 		return "", fmt.Errorf(`testfixtures: unrecognized dialect "%s"`, dialect)
 	}

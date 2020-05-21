@@ -46,6 +46,7 @@ var (
 	_ helper = &postgreSQL{}
 	_ helper = &sqlite{}
 	_ helper = &sqlserver{}
+	_ helper = &clickhouse{}
 )
 
 type baseHelper struct{}
